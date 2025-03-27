@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bn5ajhttn102x"]
+[gd_scene load_steps=37 format=3 uid="uid://bn5ajhttn102x"]
 
 [ext_resource type="Script" uid="uid://cgbj46kcfq53b" path="res://escenas/componentes/jugador/jugador.gd" id="1_6on4n"]
 [ext_resource type="Texture2D" uid="uid://bo071ijyvars0" path="res://assets/texturas/Jugador/attack.png" id="2_ar1kp"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://ucopwwilnmpm" path="res://escenas/componentes/jugador/estados/quieto.gd" id="7_ouxw5"]
 [ext_resource type="Script" uid="uid://cqip1crqu6epi" path="res://escenas/componentes/jugador/estados/cayendo.gd" id="8_gk1eg"]
 [ext_resource type="Script" uid="uid://b26xrrlitjd13" path="res://escenas/componentes/jugador/estados/corriendo.gd" id="9_udejt"]
-[ext_resource type="Script" uid="uid://cayrnsgqxcsk7" path="res://escenas/componentes/jugador/estados/saltando.gd" id="10_y0sdt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_003vn"]
 size = Vector2(17, 49)
@@ -223,9 +222,8 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Jugador" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[node name="Jugador" type="CharacterBody2D"]
 script = ExtResource("1_6on4n")
-sprite = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -250,8 +248,4 @@ metadata/_custom_type_script = "uid://bn6gasd5e8okq"
 
 [node name="Corriendo" type="Node" parent="MaquinaEstado"]
 script = ExtResource("9_udejt")
-metadata/_custom_type_script = "uid://bn6gasd5e8okq"
-
-[node name="Saltando" type="Node" parent="MaquinaEstado"]
-script = ExtResource("10_y0sdt")
 metadata/_custom_type_script = "uid://bn6gasd5e8okq"

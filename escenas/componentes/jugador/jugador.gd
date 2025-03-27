@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 20
+@export var speed = 220.0
+@export var gravedad = 450.0
+@export var sprite : AnimatedSprite2D
 
 func _physics_process(delta):
-	var direccion = Input.get_axis("mover_izquierda", "mover_derecha")
-	velocity.x = direccion * speed
-	move_and_slide()
+	pass
