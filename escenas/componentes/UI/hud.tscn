@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpu6xd0lyis7m"]
+
+[ext_resource type="Texture2D" uid="uid://dkdiefj4uby7t" path="res://assets/texturas/icon.svg" id="1_jjj62"]
+[ext_resource type="Script" uid="uid://dof0sgtxjbdh1" path="res://escenas/componentes/UI/hud.gd" id="1_qtywj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtywj"]
+bg_color = Color(0.156863, 0.682353, 0.34902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v38me"]
+bg_color = Color(0.12549, 0.529412, 0.890196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtywj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="BarrasContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="VidaContianer" type="HBoxContainer" parent="MarginContainer/BarrasContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="BarraVida" type="ProgressBar" parent="MarginContainer/BarrasContainer/VidaContianer"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_qtywj")
+value = 50.0
+show_percentage = false
+
+[node name="CantidadVida" type="Label" parent="MarginContainer/BarrasContainer/VidaContianer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "32"
+
+[node name="MagiaContainer" type="HBoxContainer" parent="MarginContainer/BarrasContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="BarraMagia" type="ProgressBar" parent="MarginContainer/BarrasContainer/MagiaContainer"]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_v38me")
+value = 30.0
+show_percentage = false
+
+[node name="CantidadMagia" type="Label" parent="MarginContainer/BarrasContainer/MagiaContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "32"
+
+[node name="MonedasContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MonedasContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("1_jjj62")
+expand_mode = 5
+
+[node name="CantidadMonedas" type="Label" parent="MarginContainer/MonedasContainer"]
+layout_mode = 2
+text = "60"
