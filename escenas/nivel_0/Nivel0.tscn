@@ -1,19 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://c64emaas7u4h"]
+[gd_scene load_steps=10 format=3 uid="uid://c64emaas7u4h"]
 
 [ext_resource type="PackedScene" uid="uid://bn5ajhttn102x" path="res://escenas/componentes/jugador/jugador.tscn" id="1_8pfdu"]
+[ext_resource type="Texture2D" uid="uid://dkdiefj4uby7t" path="res://assets/texturas/icon.svg" id="2_003vn"]
+[ext_resource type="Texture2D" uid="uid://bu8t37ohaffg3" path="res://assets/texturas/backgrounds/bg_1.png" id="2_r2lhu"]
+[ext_resource type="Texture2D" uid="uid://bu82l0524jmxn" path="res://assets/texturas/backgrounds/bg_2.png" id="3_v3xqc"]
+[ext_resource type="Texture2D" uid="uid://cnidj4ax0hi4d" path="res://assets/texturas/backgrounds/bg_3.png" id="4_piwy4"]
+[ext_resource type="Texture2D" uid="uid://c8ku3kd8dvri2" path="res://assets/texturas/backgrounds/bg_4.png" id="5_mg017"]
+[ext_resource type="Texture2D" uid="uid://c8rsjmd1bxlac" path="res://assets/texturas/backgrounds/bg_5.png" id="6_yau7a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pfdu"]
-size = Vector2(1163, 20)
+size = Vector2(1163, 53)
 
-[node name="Nivel0" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_310cu"]
+size = Vector2(121, 122)
+
+[node name="Nivel0" type="Node2D" groups=["Enemigos"]]
 
 [node name="Jugador" parent="." instance=ExtResource("1_8pfdu")]
-position = Vector2(588, 352)
+position = Vector2(394, 595)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(2, 640)
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(579.5, 655)
+scale = Vector2(9.07031, 0.40625)
+texture = ExtResource("2_003vn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
+position = Vector2(-63.118, -36.9231)
+scale = Vector2(0.11025, 2.46154)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(571.5, 0)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D2/StaticBody2D"]
+position = Vector2(571.5, 16.5)
 shape = SubResource("RectangleShape2D_8pfdu")
+
+[node name="Fondo" type="ParallaxBackground" parent="."]
+scroll_limit_end = Vector2(0, 360)
+
+[node name="Cielo" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/Cielo"]
+position = Vector2(640, 360)
+texture = ExtResource("2_r2lhu")
+
+[node name="MontanaLejos" type="ParallaxLayer" parent="Fondo"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/MontanaLejos"]
+position = Vector2(640, 360)
+texture = ExtResource("3_v3xqc")
+
+[node name="Ciudad" type="ParallaxLayer" parent="Fondo"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/Ciudad"]
+position = Vector2(640, 360)
+texture = ExtResource("4_piwy4")
+
+[node name="Bosque" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/Bosque"]
+position = Vector2(639, 359)
+texture = ExtResource("5_mg017")
+
+[node name="BosqueCercaer" type="ParallaxLayer" parent="Fondo"]
+motion_scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/BosqueCercaer"]
+position = Vector2(640, 360)
+texture = ExtResource("6_yau7a")
+
+[node name="Enemigo" type="CharacterBody2D" parent="." groups=["Enemigos"]]
+position = Vector2(785, 586)
+scale = Vector2(0.610077, 0.596442)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
+texture = ExtResource("2_003vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_310cu")

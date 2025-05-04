@@ -2,7 +2,6 @@ extends Node
 class_name MaquinaEstado
 
 @export var jugador : CharacterBody2D
-
 var estado_actual : Estado
 
 func _ready():
