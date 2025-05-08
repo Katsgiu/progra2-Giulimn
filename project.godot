@@ -14,9 +14,14 @@ config/name="Juego1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/texturas/icon.svg"
 
+[autoload]
+
+Globales="*res://escenas/componentes/globales/globales.gd"
+
 [global_group]
 
 Enemigos=""
+Jugador=""
 
 [input]
 

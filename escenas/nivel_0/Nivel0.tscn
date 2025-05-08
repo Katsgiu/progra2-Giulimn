@@ -1,22 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://c64emaas7u4h"]
+[gd_scene load_steps=15 format=3 uid="uid://c64emaas7u4h"]
 
 [ext_resource type="PackedScene" uid="uid://bn5ajhttn102x" path="res://escenas/componentes/jugador/jugador.tscn" id="1_8pfdu"]
 [ext_resource type="Texture2D" uid="uid://dkdiefj4uby7t" path="res://assets/texturas/icon.svg" id="2_003vn"]
 [ext_resource type="Texture2D" uid="uid://bu8t37ohaffg3" path="res://assets/texturas/backgrounds/bg_1.png" id="2_r2lhu"]
+[ext_resource type="Script" uid="uid://bdqq4bwox216o" path="res://escenas/componentes/enemigo/enemigo_volador.gd" id="3_piwy4"]
 [ext_resource type="Texture2D" uid="uid://bu82l0524jmxn" path="res://assets/texturas/backgrounds/bg_2.png" id="3_v3xqc"]
 [ext_resource type="Texture2D" uid="uid://cnidj4ax0hi4d" path="res://assets/texturas/backgrounds/bg_3.png" id="4_piwy4"]
 [ext_resource type="Texture2D" uid="uid://c8ku3kd8dvri2" path="res://assets/texturas/backgrounds/bg_4.png" id="5_mg017"]
 [ext_resource type="Texture2D" uid="uid://c8rsjmd1bxlac" path="res://assets/texturas/backgrounds/bg_5.png" id="6_yau7a"]
+[ext_resource type="Script" uid="uid://b0vfp80st222t" path="res://escenas/componentes/coleccionables/monedas.gd" id="9_piwy4"]
+[ext_resource type="Script" uid="uid://cn3jpyf2d7ypf" path="res://escenas/componentes/guardar/save_manager.gd" id="10_mg017"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pfdu"]
 size = Vector2(1163, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_310cu"]
-size = Vector2(121, 122)
+size = Vector2(103.266, 103.95)
 
-[node name="Nivel0" type="Node2D" groups=["Enemigos"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3xqc"]
+size = Vector2(9.45656, 5.39431)
 
-[node name="Jugador" parent="." instance=ExtResource("1_8pfdu")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg017"]
+size = Vector2(129, 135)
+
+[node name="Nivel0" type="Node2D" groups=["Enemigos", "Jugador"]]
+
+[node name="Jugador" parent="." groups=["Jugador"] instance=ExtResource("1_8pfdu")]
 position = Vector2(394, 595)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
@@ -33,10 +42,35 @@ metadata/_edit_group_ = true
 position = Vector2(571.5, 16.5)
 shape = SubResource("RectangleShape2D_8pfdu")
 
+[node name="Enemigo" type="CharacterBody2D" parent="." node_paths=PackedStringArray("hitbox") groups=["Enemigos"]]
+position = Vector2(522, 570)
+scale = Vector2(0.610077, 0.596442)
+script = ExtResource("3_piwy4")
+hitbox = NodePath("Hitbox")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
+texture = ExtResource("2_003vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+position = Vector2(-2.4588, -1.67664)
+shape = SubResource("RectangleShape2D_310cu")
+
+[node name="Hitbox" type="Area2D" parent="Enemigo"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/Hitbox"]
+position = Vector2(-2.4588, -1.67664)
+scale = Vector2(13, 23)
+shape = SubResource("RectangleShape2D_v3xqc")
+
+[node name="TimerAtaque" type="Timer" parent="Enemigo" groups=["Enemigos"]]
+autostart = true
+
 [node name="Fondo" type="ParallaxBackground" parent="."]
 scroll_limit_end = Vector2(0, 360)
 
 [node name="Cielo" type="ParallaxLayer" parent="Fondo"]
+position = Vector2(-48, 0)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fondo/Cielo"]
@@ -44,18 +78,21 @@ position = Vector2(640, 360)
 texture = ExtResource("2_r2lhu")
 
 [node name="MontanaLejos" type="ParallaxLayer" parent="Fondo"]
+position = Vector2(-48, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fondo/MontanaLejos"]
 position = Vector2(640, 360)
 texture = ExtResource("3_v3xqc")
 
 [node name="Ciudad" type="ParallaxLayer" parent="Fondo"]
+position = Vector2(-48, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fondo/Ciudad"]
 position = Vector2(640, 360)
 texture = ExtResource("4_piwy4")
 
 [node name="Bosque" type="ParallaxLayer" parent="Fondo"]
+position = Vector2(-48, 0)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fondo/Bosque"]
@@ -63,20 +100,28 @@ position = Vector2(639, 359)
 texture = ExtResource("5_mg017")
 
 [node name="BosqueCercaer" type="ParallaxLayer" parent="Fondo"]
+position = Vector2(-48, 0)
 motion_scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fondo/BosqueCercaer"]
 position = Vector2(640, 360)
 texture = ExtResource("6_yau7a")
 
-[node name="Enemigo" type="CharacterBody2D" parent="." groups=["Enemigos"]]
-position = Vector2(785, 586)
-scale = Vector2(0.610077, 0.596442)
+[node name="Moneda" type="Area2D" parent="."]
+position = Vector2(-109, 341)
+scale = Vector2(0.513471, 0.52)
+script = ExtResource("9_piwy4")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
+[node name="Sprite2D" type="Sprite2D" parent="Moneda"]
+position = Vector2(667, 451)
 texture = ExtResource("2_003vn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
-position = Vector2(-0.5, -1)
-shape = SubResource("RectangleShape2D_310cu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moneda"]
+position = Vector2(666.5, 450.5)
+shape = SubResource("RectangleShape2D_mg017")
+
+[node name="SaveManager" type="Node" parent="."]
+script = ExtResource("10_mg017")
+
+[connection signal="timeout" from="Enemigo/TimerAtaque" to="Enemigo" method="_on_timer_ataque_timeout"]

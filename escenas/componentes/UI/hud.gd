@@ -1,10 +1,10 @@
 extends Control
 
-var vida = 100
-var max_vida = 300
-var magia = 20
-var max_magia = 100
-var monedas = 0
+var vida : int
+var max_vida : int
+var magia : int
+var max_magia : int
+var monedas : int
 
 @onready var barra_vida = $MarginContainer/BarrasContainer/VidaContianer/BarraVida
 @onready var texto_vida = $MarginContainer/BarrasContainer/VidaContianer/CantidadVida
@@ -14,6 +14,7 @@ var monedas = 0
 
 @onready var texto_moneda = $MarginContainer/MonedasContainer/CantidadMonedas
 
+
 func _ready():
 	actualizar_valores()
 
@@ -22,6 +23,7 @@ func _process(delta):
 	texto_vida.text = str(vida)
 	barra_magia.value = magia
 	texto_magia.text = str(magia)
+	texto_moneda.text = str(monedas)
 
 func actualizar_valores():
 	barra_vida.max_value = max_vida

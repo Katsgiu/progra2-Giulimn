@@ -93,4 +93,4 @@ expand_mode = 5
 
 [node name="CantidadMonedas" type="Label" parent="MarginContainer/MonedasContainer"]
 layout_mode = 2
-text = "60"
+text = "0"

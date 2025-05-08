@@ -272,7 +272,7 @@ metadata/_custom_type_script = "uid://bn6gasd5e8okq"
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("11_lde6h")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(149, -103)
+position = Vector2(285, -239)
 scale = Vector2(-1022.89, -511.554)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
