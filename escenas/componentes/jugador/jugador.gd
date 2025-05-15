@@ -22,7 +22,7 @@ func _ready():
 	await get_tree().process_frame
 	monedas = Globales.save_manager.datos_guardados.monedas
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	actualizar_hud()
 
 func inicializar_jugador():

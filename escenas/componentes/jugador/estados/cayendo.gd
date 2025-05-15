@@ -6,7 +6,7 @@ func enter():
 func physics_update(_delta):
 	jugador.velocity.y = jugador.gravedad
 	
-	var direccion = Input.get_axis("mov_izquierda", "mov_derecha")
+	var direccion = Input.get_axis("mover_izquierda", "mover_derecha")
 	jugador.velocity.x = direccion * jugador.velocidad
 	
 	#ver

@@ -1,6 +1,6 @@
 extends Node
 
-var datos_guardados : Dictionary = {"monedas" : 100}
+var datos_guardados : Dictionary = {"monedas" : 100, "nombre" : "carlos"}
 
 func _ready():
 	Globales.save_manager = self
@@ -14,7 +14,9 @@ func guardar():
 
 func cargar():
 	var archivo_guardado = FileAccess.open("user://archivo_guardado.save", FileAccess.READ)
-	var diccionario = archivo_guardado.get_line()
-	var json =JSON.new()
-	json.parse(diccionario)
+	var texto = archivo_guardado.get_line()
+	var json = JSON.new()
+	json.parse(texto)
 	datos_guardados = json.data
+	
+	Globales.jugador.monedas = datos_guardados.monedas
