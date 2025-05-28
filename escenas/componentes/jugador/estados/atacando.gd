@@ -8,6 +8,9 @@ func enter():
 	
 	
 	for cuerpo in hitbox.get_overlapping_bodies():
+		#if jugador.sprite.flip_h == true:
+			
+		
 		if cuerpo.is_in_group("Enemigos"):
 			cuerpo.herir(10)
 
