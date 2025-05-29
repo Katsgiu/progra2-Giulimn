@@ -11,11 +11,9 @@ script = ExtResource("1_o4wsc")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(667, 451)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_h31wp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(666.5, 450.5)
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_mg017")
