@@ -15,16 +15,16 @@ func _physics_process(delta: float):
 	if atacando:
 		return
 
-	
-	velocity = direccion * velocidad * delta
-	animation_slime.play("Slime_Move")
-	if direccion.x < 0:
-		animation_slime.flip_h = false
-	elif direccion.x > 0:
-		animation_slime.flip_h = true
+	if not atacando:
+		velocity = direccion * velocidad * delta
+		animation_slime.play("Slime_Move")
+		if direccion.x < 0:
+			animation_slime.flip_h = false
+		elif direccion.x > 0:
+			animation_slime.flip_h = true
 		
-	if position.distance_to(posicion_inicial) >= distancia:
-		direccion = position.direction_to(posicion_inicial)
+		if position.distance_to(posicion_inicial) >= distancia:
+			direccion = position.direction_to(posicion_inicial)
 		
 			
 	move_and_slide()
@@ -33,7 +33,13 @@ func _physics_process(delta: float):
 func _on_timer_ataque_2_timeout():
 	for cuerpo in hitbox.get_overlapping_bodies():
 		if cuerpo.is_in_group("Jugador"):
-			atacando = true	
+			atacando = true
 			if atacando:
 				animation_slime.play("Slime_Attack")
 				cuerpo.herir(40)
+		
+		else:
+			atacando = false
+	
+	
+			

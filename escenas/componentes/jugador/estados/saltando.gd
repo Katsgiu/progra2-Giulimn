@@ -2,16 +2,21 @@ extends Estado
 
 func enter():
 	jugador.sprite.play("Saltando")
-	jugador.velocity.y = -jugador.impulso_salto
+	jugador.velocity.y = -jugador.impulso_salto 
 	
 
-func physics_update(_delta):
-	jugador.velocity.y += jugador.friccion_salto
+func physics_update(delta):
+	jugador.velocity.y += jugador.gravedad * delta
 	jugador.move_and_slide()
 	
 	var direccion = Input.get_axis("mover_izquierda","mover_derecha")
-	jugador.velocity.x = direccion * jugador.velocidad
+	jugador.velocity.x = direccion * jugador.velocidad 
 	
+	if direccion < 0 and direccion != 0:
+		jugador.sprite.flip_h = true
+	else:
+		jugador.sprite.flip_h = false
+		
 	if jugador.velocity.y > 0:
 		get_parent().ir_a_estado_siguiente("Cayendo")
 	

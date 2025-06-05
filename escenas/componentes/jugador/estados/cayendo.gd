@@ -3,7 +3,7 @@ extends Estado
 func enter():
 	jugador.sprite.play("Cayendo")
 
-func physics_update(_delta):
+func physics_update(delta):
 	jugador.velocity.y = jugador.gravedad
 	
 	var direccion = Input.get_axis("mover_izquierda", "mover_derecha")
